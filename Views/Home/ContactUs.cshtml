@@ -1,0 +1,137 @@
+﻿@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - KhumaloCraft Emporium</title>
+    <style>
+        
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #9df9ef;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .contact-info, .image-container, .contact-form {
+            width: 75%;
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .contact-info h2, .image-container h2, .contact-form h2 {
+                color: #333;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .image-container img {
+                width: 100%;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+
+            .contact-form label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .contact-form input[type="text"],
+            .contact-form input[type="email"],
+            .contact-form textarea {
+                width: calc(100% - 12px);
+                padding: 6px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+
+            .contact-form input[type="button"] {
+                background-color: #00a0d8;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+
+                .contact-form input[type="button"]:hover {
+                    background-color: #007399;
+                }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contact KhumaloCraft Emporium</h1>
+    </header>
+
+    <div class="container">
+        <section class="contact-info">
+            <h2>Contact Information</h2>
+            <p><strong>Phone:</strong> 021 234 5678</p>
+            <p><strong>Email:</strong> khumalocraft@gmail.com</p>
+            <p><strong>Address:</strong> 10 Tilted Towers, Cape Town, South Africa</p>
+        </section>
+
+        <section class="image-container">
+            <h2>Our Location</h2>
+            <img src="https://qph.cf2.quoracdn.net/main-qimg-92833e9892eed397917d5d8cf79d7597-lq" alt="Map Image">
+           
+        </section>
+
+        <section class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form id="contactForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="4" cols="50" required></textarea><br>
+
+                <input type="button" value="Submit" onclick="submitForm()">
+            </form>
+        </section>
+    </div>
+
+    <script>
+        function submitForm() {
+            alert("Your message has been sent!");
+           
+        }
+    </script>
+    <br />
+</body>
+</html>
