@@ -1,0 +1,37 @@
+﻿@model IEnumerable<CLDVpoe.Models.ProductDisplayModel>
+@{
+    ViewData["Title"] = "Product Display";
+}
+
+<h2>Products</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Availability</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Category</td>
+                    <td>@product.Availability</td>
+                </tr>
+        }
+    </tbody>
+</table>
+
+@if (ViewData["UserID"] != null)
+{
+        <p>Welcome, User @ViewData["UserID"]!</p>
+}
+else
+{
+        <p>Please log in to see personalized information.</p>
+}

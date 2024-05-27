@@ -1,0 +1,280 @@
+﻿@model IEnumerable<CLDVpoe.Models.ProductDisplayModel>
+
+@{
+    ViewData["Title"] = "My Work";
+    var products = Model;
+    var userID = ViewBag.UserID;
+    var transactions = ViewBag.Transactions;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - KhumaloCraft Emporium</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #9df9ef;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .craftwork {
+            width: 30%;
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+            .craftwork img {
+                width: 100%;
+                border-radius: 5px;
+            }
+
+
+        .craftwork h3 {
+            margin-top: 15px;
+            color: #333;
+        }
+
+        .craftwork p {
+            color: #666;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Work</h1>
+    </header>
+
+   
+
+    <div class="container">
+      
+
+        <div class="container">
+            <div class="craftwork">
+                <img src="https://assets.pbimgs.com/pbimgs/rk/images/dp/wcm/202408/0016/artisan-studio-handcrafted-ceramic-vases-o.jpg" alt="Ceramic Vase" class="img-fluid" style="max-width: 100%;">
+                <h3>Ceramic Vase</h3>
+                <p>Price: R100.00</p>
+                <p>Category: Home Decor</p>
+                <p>Availability: In Stock</p>
+            </div>
+            <div class="craftwork">
+                <img src="https://wandererhandcrafted.co.za/wp-content/uploads/2021/01/Leya-tote-bag-by-wanderer-handcrafted-leather-1.jpg" alt="Tote Bag" class="img-fluid" style="max-width: 100%;">
+                <h3>Tote Bag</h3>
+                <p>Price: R50.00</p>
+                <p>Category: Fashion</p>
+                <p>Availability: In Stock</p>
+            </div>
+            <div class="craftwork">
+                <img src="https://nestprettythings.com/cdn/shop/products/Colorful_Bead_Necklace_grande.jpg?v=1564501489" alt="Necklace" class="img-fluid" style="max-width: 100%;">
+                <h3>Bead Necklace</h3>
+                <p>Price: R30.00</p>
+                <p>Category: Jewelry</p>
+                <p>Availability: In Stock</p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <h2>Add Product</h2>
+    <div class="form-container">
+        <form id="addProductForm" asp-action="AddProduct" method="post">
+            <div class="form-group">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="Name" class="form-control" required title="Please enter the product name." />
+                </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input type="text" name="Price" class="form-control" required title="Please enter the product price." />
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <input type="text" name="Category" class="form-control" required title="Please enter the product category." />
+            </div>
+            <div class="form-group">
+                <label>Availability</label>
+                <input type="text" name="Availability" class="form-control" required title="Please enter the product availability." />
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+    </div>
+
+
+
+
+
+    @if (userID != null)
+    {
+        <p>User ID: @userID</p>
+    }
+    <h2>All Products</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Availability</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <td>@product.ProductID</td>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Category</td>
+                    <td>@product.Availability</td>
+                    <td>
+                        <form asp-controller="Transaction" asp-action="PlaceOrder" method="post">
+                            <input type="hidden" name="productID" value="@product.ProductID" />
+                            <button type="submit">Place Order</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h2>My Orders</h2>
+
+    <!-- Display Success Message -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <!-- Display Error Message -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>User ID</th>
+                <th>Product ID</th>
+                <th>Order Date</th>
+                <th>Order Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in transactions)
+            {
+                <tr>
+                    <td>@transaction.TransactionID</td>
+                    <td>@transaction.UserID</td>
+                    <td>@transaction.ProductID</td>
+                    <td>@transaction.OrderDate</td>
+                    <td>@transaction.OrderStatus</td>
+                    <td>
+                        @if (transaction.OrderStatus == "Pending")
+                        {
+                            <form asp-controller="Transaction" asp-action="UpdateStatus" method="post">
+                                <input type="hidden" name="transactionID" value="@transaction.TransactionID" />
+                                <button type="submit" class="btn btn-primary">Mark as Completed</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span>Completed</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+
+
+</html>

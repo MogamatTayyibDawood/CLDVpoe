@@ -1,0 +1,259 @@
+﻿@model CLDVpoe.Models.LoginModel
+@{
+    ViewData["Title"] = "Home";
+    var userID = ViewData["userID"];
+    var products = ViewData["Products"] as List<CLDVpoe.Models.productTable>;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - KhumaloCraft Emporium</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            background-color: #9df9ef;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .background-section,
+        .featured-products,
+        .newsletter {
+            padding: 20px;
+            background-color: #fff;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .newsletter-form {
+            margin-top: 20px;
+        }
+
+            .newsletter-form input[type="email"] {
+                width: 250px;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+
+            .newsletter-form input[type="submit"] {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .newsletter-form input[type="submit"]:hover {
+                    background-color: #0056b3;
+                }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .testimonial {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+            .testimonial p {
+                margin-bottom: 10px;
+            }
+
+            .testimonial .author {
+                font-style: italic;
+            }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .star {
+            color: #f2b01e;
+        }
+
+        .header-image {
+            width: 100%;
+            max-width: 400px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                color: #333;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+
+            .form-group span.text-danger {
+                color: #dc3545;
+                font-size: 0.875em;
+            }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to KhumaloCraft Emporium</h1>
+    </header>
+    <img src="https://tnsi.com/wp-content/uploads/2022/11/US-Map.jpg" alt="KhumaloCraft Emporium" class="header-image">
+    <br />
+
+    @if (userID == null)
+    {
+        <div class="form-container">
+            <h2 class="text-center">Register</h2>
+            <form asp-controller="User" asp-action="Register" method="post">
+                <div class="form-group">
+                    <label for="UserName">User Name</label>
+                    <input id="UserName" name="UserName" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="UserSurname">User Surname</label>
+                    <input id="UserSurname" name="UserSurname" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="UserEmail">User Email</label>
+                    <input id="UserEmail" name="UserEmail" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input id="Password" name="Password" type="password" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <p>User ID: @userID</p>
+    }
+
+    <br />
+    <br />
+   
+
+    <section class="background-section">
+        <h2>About KhumaloCraft Emporium</h2>
+        <p>James Khumalo, a visionary entrepreneur, founded KhumaloCraft Emporium with the goal of showcasing handcrafted products globally.<br /> Our platform connects artisans worldwide with a discerning audience.</p>
+        <p>We offer a scalable, accessible, and user-friendly e-commerce platform.<br /> Our vision includes providing a positive shopping experience and ensuring global accessibility.</p>
+    </section>
+
+    <section class="featured-products">
+        <h2>Customer Reviews</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <p>"Excellent quality products! I'm very satisfied with my purchase."</p>
+                <div class="stars">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                </div>
+                <p class="author">- John Doe</p>
+            </div>
+            <div class="testimonial">
+                <p>"Great customer service and fast shipping. Will definitely buy again!"</p>
+                <div class="stars">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                </div>
+                <p class="author">- Jane Smith</p>
+            </div>
+            <div class="testimonial">
+                <p>"Love the unique designs! KhumaloCraft Emporium has become my go-to for gifts."</p>
+                <div class="stars">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                </div>
+                <p class="author">- Emily Johnson</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <h2>Join Our Newsletter</h2>
+        <p>Subscribe to receive updates on new products, special offers, and more.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required />
+            <input type="submit" value="Subscribe" />
+        </form>
+    </section>
+</body>
+</html>

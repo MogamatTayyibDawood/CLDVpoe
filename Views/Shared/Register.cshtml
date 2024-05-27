@@ -1,0 +1,39 @@
+﻿@model CLDVpoe.Models.userTable
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="form-container">
+    <h2 class="text-center">Register</h2>
+    <form asp-controller="User" asp-action="Register" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class="form-control" required />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserSurname"></label>
+            <input asp-for="UserSurname" class="form-control" required />
+            <span asp-validation-for="UserSurname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserEmail"></label>
+            <input asp-for="UserEmail" class="form-control" required />
+            <span asp-validation-for="UserEmail" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" type="password" class="form-control" required />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
