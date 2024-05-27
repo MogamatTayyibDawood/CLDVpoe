@@ -1,3 +1,4 @@
+
 # KhumaloCraft Emporium
 
 ## Introduction
