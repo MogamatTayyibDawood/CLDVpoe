@@ -1,35 +1,42 @@
-﻿<!DOCTYPE html>
+﻿@model CLDVpoe.Models.LoginModel
+@{
+    ViewData["Title"] = "Home";
+    var userID = ViewData["userID"];
+    var products = ViewData["Products"] as List<CLDVpoe.Models.productTable>;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"] - KhumaloCraft Emporium</title>
     <style>
-       
         body {
-            margin: 0; 
+            margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif; 
-            
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
         }
 
         header {
             background-color: #9df9ef;
             color: #fff;
             text-align: center;
-            margin: 0; 
-            margin-bottom: 20px; 
+            padding: 20px 0;
+            margin-bottom: 20px;
         }
 
         h1, h2 {
             color: #333;
-            margin-bottom: 20px; 
-            text-align: center; 
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         p {
             color: #666;
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         .background-section,
@@ -39,40 +46,39 @@
             background-color: #fff;
             margin-bottom: 20px;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-            text-align: center; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .newsletter-form {
-            margin-top: 20px; 
+            margin-top: 20px;
         }
 
             .newsletter-form input[type="email"] {
-                width: 250px; 
-                padding: 10px; 
-                border-radius: 5px; 
-                border: 1px solid #ccc; 
+                width: 250px;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
             }
 
             .newsletter-form input[type="submit"] {
-                background-color: #007bff; 
+                background-color: #007bff;
                 color: #fff;
                 border: none;
-                padding: 10px 20px; 
-                border-radius: 5px; 
-                cursor: pointer; 
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
             }
 
                 .newsletter-form input[type="submit"]:hover {
-                    background-color: #0056b3; 
+                    background-color: #0056b3;
                 }
 
-      
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 20px; 
-            justify-items: center; 
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-items: center;
         }
 
         .testimonial {
@@ -80,18 +86,17 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            text-align: left; 
+            text-align: left;
         }
 
             .testimonial p {
-                margin-bottom: 10px; 
+                margin-bottom: 10px;
             }
 
             .testimonial .author {
-                font-style: italic; 
+                font-style: italic;
             }
 
-        
         .stars {
             display: flex;
             justify-content: center;
@@ -99,16 +104,61 @@
         }
 
         .star {
-            color: #f2b01e; 
+            color: #f2b01e;
         }
 
-        
         .header-image {
             width: 100%;
             max-width: 400px;
             display: block;
             margin: 0 auto;
         }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                color: #333;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+
+            .form-group span.text-danger {
+                color: #dc3545;
+                font-size: 0.875em;
+            }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
     </style>
 </head>
 <body>
@@ -117,6 +167,41 @@
     </header>
     <img src="https://tnsi.com/wp-content/uploads/2022/11/US-Map.jpg" alt="KhumaloCraft Emporium" class="header-image">
     <br />
+
+    @if (userID == null)
+    {
+        <div class="form-container">
+            <h2 class="text-center">Register</h2>
+            <form asp-controller="User" asp-action="Register" method="post">
+                <div class="form-group">
+                    <label for="UserName">User Name</label>
+                    <input id="UserName" name="UserName" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="UserSurname">User Surname</label>
+                    <input id="UserSurname" name="UserSurname" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="UserEmail">User Email</label>
+                    <input id="UserEmail" name="UserEmail" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input id="Password" name="Password" type="password" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <p>User ID: @userID</p>
+    }
+
+    <br />
+    <br />
+   
+
     <section class="background-section">
         <h2>About KhumaloCraft Emporium</h2>
         <p>James Khumalo, a visionary entrepreneur, founded KhumaloCraft Emporium with the goal of showcasing handcrafted products globally.<br /> Our platform connects artisans worldwide with a discerning audience.</p>
@@ -163,13 +248,12 @@
     </section>
 
     <section class="newsletter">
-        <h2>Subscribe to Our Newsletter</h2>
-        <form class="newsletter-form" action="#" method="post">
-            <input type="email" name="email" placeholder="Enter your email address" required>
-            <input type="submit" value="Subscribe">
-        </form><br />
-        <p>Sign up to receive updates on our latest products and promotions!</p>
+        <h2>Join Our Newsletter</h2>
+        <p>Subscribe to receive updates on new products, special offers, and more.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required />
+            <input type="submit" value="Subscribe" />
+        </form>
     </section>
-    <br />
 </body>
 </html>
