@@ -33,16 +33,3 @@ KhumaloCraft Emporium is an e-commerce platform dedicated to showcasing handcraf
 - **HTML/CSS:** Utilized for frontend design and styling.
 - **SQL Server:** Acts as the database management system for storing product information, user data, and order details.
 
-
-
-    Home: Overview of KhumaloCraft Emporium.
-    About Us: Information about the company's mission and vision.
-    Contact Us: Form for user inquiries.
-    My Work: Display of handcrafted products with details.
-
-Technologies Used
-
-    ASP.NET
-    Azure
-    HTML/CSS
-    SQL Server
